@@ -69,6 +69,30 @@ export type Patient = {
   tiempoAValidacionHoras: number;
 
   events: AuditEvent[];   // <--- nuevo
+
+  // --- KPIs de proceso (tiempos)
+  sospechaAt?: string;          // hora_sospecha
+  notificacionAt?: string;      // hora_notificación
+  inicioProtocoloAt?: string;   // hora_inicio_protocolo
+  confirmacionMEAt?: string;    // hora_confirmación_ME
+
+  // --- KPIs clínicos (demo)
+  na?: number;                  // sodio
+  pfRatio?: number;             // P/F
+  tempC?: number;               // temperatura (si quieres)
+
+  riskEpisodes?: {
+    mapLow?: number;
+    naOut?: number;
+    tempLow?: number;
+    pfLow?: number;
+  };
+
+  // --- Impacto (demo)
+  consentido?: boolean;
+  perdidaEvitable?: boolean;
+
+
 };
 
 export type AlertItem = {

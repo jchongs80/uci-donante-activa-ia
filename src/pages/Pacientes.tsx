@@ -66,6 +66,8 @@ export default function Pacientes() {
       detail: `HC ${form.hc.trim()} - Servicio ${form.servicio}`,
     };
 
+    const nowIso = new Date().toISOString();
+    
     const p: Patient = {
       id,
       hc: form.hc.trim(),
@@ -84,6 +86,13 @@ export default function Pacientes() {
       bundle: emptyBundle(),
       conversionEtapa: "Detectado",
       tiempoAValidacionHoras: 0,
+      sospechaAt: nowIso,
+      notificacionAt: nowIso, // o déjalo vacío si quieres simular el flujo paso a paso
+      na: 148,
+      pfRatio: 320,
+      riskEpisodes: { mapLow: 0, naOut: 0, tempLow: 0, pfLow: 0 },
+      consentido: false,
+      perdidaEvitable: false,
 
       // ✅ obligatorio ahora por trazabilidad
       events: [ev],

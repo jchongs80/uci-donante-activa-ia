@@ -13,6 +13,9 @@ const baseBundle = () => ({
   consentimientoProceso: { done: false },
 });
 
+const now = Date.now();
+const iso = (hAgo: number) => new Date(now - hAgo * 3600_000).toISOString();
+
 function createdEvent(patientId: string, title = "Paciente incorporado a trazabilidad"): AuditEvent {
   return {
     id: uuid(),
@@ -46,6 +49,17 @@ export function seedPatients(): Patient[] {
     conversionEtapa: "Referido",
     tiempoAValidacionHoras: 10,
     events: [createdEvent(id1, "Registro inicial (seed)")],
+    // dentro del Patient:
+    sospechaAt: iso(10),
+    notificacionAt: iso(9.5),
+    inicioProtocoloAt: iso(8.5),
+    confirmacionMEAt: iso(3),
+
+    na: 152,          // hipernatremia demo
+    pfRatio: 280,     // hipoxemia demo
+    consentido: true,
+    perdidaEvitable: false,
+    riskEpisodes: { mapLow: 1, naOut: 1, tempLow: 0, pfLow: 1 },
   };
 
   // ✅ Paciente 2
@@ -72,6 +86,17 @@ export function seedPatients(): Patient[] {
     conversionEtapa: "Mantenido",
     tiempoAValidacionHoras: 14,
     events: [createdEvent(id2, "Registro inicial (seed)")],
+    // dentro del Patient:
+    sospechaAt: iso(10),
+    notificacionAt: iso(9.5),
+    inicioProtocoloAt: iso(8.5),
+    confirmacionMEAt: iso(3),
+
+    na: 152,          // hipernatremia demo
+    pfRatio: 280,     // hipoxemia demo
+    consentido: true,
+    perdidaEvitable: false,
+    riskEpisodes: { mapLow: 1, naOut: 1, tempLow: 0, pfLow: 1 },
   };
 
   // ✅ Paciente 3
@@ -103,6 +128,17 @@ export function seedPatients(): Patient[] {
     conversionEtapa: "Validado",
     tiempoAValidacionHoras: 6,
     events: [createdEvent(id3, "Registro inicial (seed)")],
+    // dentro del Patient:
+    sospechaAt: iso(10),
+    notificacionAt: iso(9.5),
+    inicioProtocoloAt: iso(8.5),
+    confirmacionMEAt: iso(3),
+
+    na: 152,          // hipernatremia demo
+    pfRatio: 280,     // hipoxemia demo
+    consentido: true,
+    perdidaEvitable: false,
+    riskEpisodes: { mapLow: 1, naOut: 1, tempLow: 0, pfLow: 1 },
   };
 
   return [p1, p2, p3];
